@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Required Skills</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* Skill Grid Layout */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-category h2 {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h2 i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li strong {
+            color: #2c3e50;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Icons for Categories */
+        .fas {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+        }
+    </style>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Required Skills</h1>
+        <div class="skill-grid">
+            <!-- Software Development & Engineering -->
+            <div class="skill-category">
+                <h2><i class="fas fa-laptop-code"></i>Software Development & Engineering</h2>
+                <ul class="skill-list">
+                    <li><strong>Software Engineer:</strong> Java, Python, C++, Data Structures, Algorithms, OOP, Git, SQL, NoSQL, REST, GraphQL, AWS, Azure, GCP, CI/CD, Docker, Kubernetes, Agile, Scrum, Debugging</li>
+                    <li><strong>Software Developer:</strong> Java, Python, C++, C#, OOP, Web Development, SQL, PostgreSQL, MongoDB, RESTful APIs, Unit Testing, AWS, Azure, GCP, Git, Agile, Scrum</li>
+                    <li><strong>Full Stack Developer:</strong> HTML, CSS, JavaScript, React, Angular, Vue, Node.js, Django, Flask, ASP.NET, SQL, NoSQL, Firebase, REST, GraphQL, JWT, OAuth, AWS, Firebase, Azure, Docker, CI/CD, Web Security, Microservices, Git, GitHub, Bitbucket, Performance Optimization</li>
+                    <li><strong>Frontend Developer:</strong> HTML, CSS, JavaScript, React, Angular, Vue.js, Responsive Design, SASS, LESS, Webpack, Babel, UI/UX, API Integration, Browser Optimization, Cross-Browser Compatibility, Git</li>
+                    <li><strong>Backend Developer:</strong> Node.js, Django, Flask, Ruby on Rails, REST, GraphQL, SQL, NoSQL, PostgreSQL, MongoDB, OAuth, JWT, AWS, Azure, GCP, Docker, Kubernetes, CI/CD, Redis, Memcached, Scalability, Performance Optimization, Prometheus, ELK Stack, Git, GitHub</li>
+                    <li><strong>Web Developer:</strong> HTML, CSS, JavaScript, React, Vue.js, Angular, Node.js, PHP, Django, Flask, SQL, MongoDB, API Integration, Responsive Design, UI/UX, Web Security, SEO, Git</li>
+                    <li><strong>Mobile App Developer:</strong> Flutter, React Native, Swift, Kotlin, Android, iOS, UI/UX, API Integration, Performance Optimization, Firebase, AWS, Appium, Espresso, Push Notifications, Redux, Provider, Bloc, Git</li>
+                </ul>
+            </div>
+
+            <!-- Cybersecurity -->
+            <div class="skill-category">
+                <h2><i class="fas fa-shield-alt"></i>Cybersecurity</h2>
+                <ul class="skill-list">
+                    <li><strong>Cybersecurity Analyst:</strong> SIEM, Firewalls, VPNs, Vulnerability Assessment, Intrusion Detection, Security Audits, Compliance, Ethical Hacking, Endpoint Security, Threat Hunting, Incident Response, Cloud Security</li>
+                    <li><strong>Ethical Hacker:</strong> Metasploit, Burp Suite, OWASP Top 10, Network Security, Python, Bash, PowerShell, Social Engineering, Wireless Security, Reverse Engineering, Cryptography, Incident Handling, Red Teaming, Blue Teaming</li>
+                </ul>
+            </div>
+
+            <!-- Data Science & Analytics -->
+            <div class="skill-category">
+                <h2><i class="fas fa-chart-line"></i>Data Science & Analytics</h2>
+                <ul class="skill-list">
+                    <li><strong>Data Scientist:</strong> Python, R, Machine Learning, Scikit-Learn, TensorFlow, PyTorch, Data Visualization, Matplotlib, Seaborn, Tableau, Statistical Analysis, Big Data, Spark, Hadoop, SQL, NoSQL, Deep Learning, NLP, Data Wrangling, AWS, GCP</li>
+                    <li><strong>Data Analyst:</strong> Excel, SQL, Tableau, Power BI, Python, Pandas, NumPy, Statistical Analysis, ETL, Business Intelligence, Reporting, Dashboarding, Data Cleaning, Predictive Analytics, Google Analytics</li>
+                </ul>
+            </div>
+
+            <!-- Cloud Computing & DevOps -->
+            <div class="skill-category">
+                <h2><i class="fas fa-cloud"></i>Cloud Computing & DevOps</h2>
+                <ul class="skill-list">
+                    <li><strong>Cloud Engineer:</strong> AWS, Azure, GCP, Terraform, CloudFormation, Docker, Kubernetes, Cloud Networking, CI/CD, Serverless Computing, Cloud Security, Prometheus, ELK Stack, Cloud Storage, Cost Optimization</li>
+                    <li><strong>DevOps Engineer:</strong> Jenkins, GitHub Actions, Terraform, Ansible, AWS, Azure, GCP, Docker, Kubernetes, Bash, Python, Prometheus, Grafana, Security, Compliance, System Automation, Load Balancing, Scaling, Git</li>
+                </ul>
+            </div>
+
+            <!-- UI/UX & Product Design -->
+            <div class="skill-category">
+                <h2><i class="fas fa-palette"></i>UI/UX & Product Design</h2>
+                <ul class="skill-list">
+                    <li><strong>UI/UX Designer:</strong> Figma, Adobe XD, Sketch, User Research, HTML, CSS, Usability Testing, Interaction Design, Design Thinking, Color Theory, Typography, Accessibility, Mobile UI/UX, Agile Product Development</li>
+                </ul>
+            </div>
+
+            <!-- Software Testing & QA -->
+            <div class="skill-category">
+                <h2><i class="fas fa-bug"></i>Software Testing & QA</h2>
+                <ul class="skill-list">
+                    <li><strong>QA Engineer:</strong> Manual & Automated Testing, Selenium, Appium, Postman, JMeter, LoadRunner, Security Testing, DevOps Testing, Database Testing, Regression Testing, Agile Testing, JIRA, Bugzilla</li>
+                </ul>
+            </div>
+
+            <!-- IT Management & Leadership -->
+            <div class="skill-category">
+                <h2><i class="fas fa-users-cog"></i>IT Management & Leadership</h2>
+                <ul class="skill-list">
+                    <li><strong>IT Manager:</strong> Project Management, IT Governance, Compliance, Cybersecurity Management, Budgeting, Cost Management, Agile, Scrum, Cloud Computing, IT Strategy, Risk Assessment, Communication, Leadership, Vendor Management</li>
+                </ul>
+            </div>
+
+            <!-- Database & Storage Technologies -->
+            <div class="skill-category">
+                <h2><i class="fas fa-database"></i>Database & Storage Technologies</h2>
+                <ul class="skill-list">
+                    <li><strong>Database Administrator (DBA):</strong> SQL, NoSQL, Database Security, Performance Optimization, Backup & Recovery, Data Warehousing, Query Optimization, Indexing, Cloud Databases, ETL, Data Replication</li>
+                </ul>
+            </div>
+        </div>
+        <a href="index.html" class="back-button">Back to Dashboard</a>
+    </div>
+</body>
+</html>

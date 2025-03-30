@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Sync - IT Job Recommendation</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #34495e;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .add-more {
+            margin-top: 10px;
+            background-color: #3498db;
+        }
+
+        .add-more:hover {
+            background-color: #2980b9;
+        }
+
+        /* Recommendations Section */
+        #recommendations {
+            margin-top: 30px;
+        }
+
+        .recommendation {
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recommendation:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendation.highlighted {
+            border: 2px solid #3498db;
+            background-color: #e3f2fd;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+        }
+
+        .recommendation h3 {
+            margin: 0;
+            color: #3498db;
+            font-size: 1.5rem;
+        }
+
+        .recommendation p {
+            margin: 10px 0;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            input, textarea, select, button {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Skill Sync - IT Job Recommendation</h1>
+        <form id="job-form">
+            <!-- Name -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <!-- Gender -->
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <!-- Education -->
+            <label for="education">Education:</label>
+            <div id="education">
+                <input type="text" id="education" name="education[]" placeholder="Enter your highest qualification" required>
+            </div>
+            <button type="button" class="add-more" onclick="addField('education')">Add More</button>
+
+            <!-- Skills -->
+            <label for="skills">Skills:</label>
+            <div id="skills">
+                <input type="text" id="skills" name="skills[]" placeholder="List your skills (e.g., Python, Java, SQL)" required>
+            </div>
+            <button type="button" class="add-more" onclick="addField('skills')">Add More</button>
+
+            <!-- Experience -->
+            <label for="experience">Experience (in years):</label>
+            <input type="number" id="experience" name="experience" placeholder="Enter years of experience" required min="0" max="50">
+
+            <!-- Work Type -->
+            <label for="work_type">Work Type:</label>
+            <select id="work_type" name="work_type" required>
+                <option value="">Select Work Type</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Intern">Intern</option>
+                <option value="Temporary">Temporary</option>
+            </select>
+
+            <!-- Certifications -->
+            <label for="certifications">Certifications:</label>
+            <div id="certifications">
+                <input type="text" id="certifications" name="certifications[]" placeholder="List any certifications (e.g., AWS Certified, PMP)" required>
+            </div>
+            <button type="button" class="add-more" onclick="addField('certifications')">Add More</button>
+
+            <!-- Projects -->
+            <label for="projects">Key Projects:</label>
+            <div id="projects">
+                <input type="text" id="projects" name="projects[]" placeholder="Describe key projects you have worked on" required>
+            </div>
+            <button type="button" class="add-more" onclick="addField('projects')">Add More</button>
+
+            <!-- Interests -->
+            <label for="interests">Interests:</label>
+            <div id="interests">
+                <input type="text" id="interests" name="interests[]" placeholder="Specify your interests in specific job roles (e.g., Data Scientist, Backend Developer)" required>
+            </div>
+            <button type="button" class="add-more" onclick="addField('interests')">Add More</button>
+
+            <!-- Submit Button -->
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <!-- Recommendations Section -->
+        <div id="recommendations"></div>
+    </div>
+
+    <script>
+        const departments = {
+    softwareDevelopment: [
+        "Software Engineer", "Software Developer", "Full Stack Developer", 
+        "Frontend Developer", "Backend Developer", "Web Developer", 
+        "Mobile App Developer", "Game Developer", "Embedded Software Engineer",
+        "API Developer", "Systems Software Engineer", "DevOps Engineer",
+        "Site Reliability Engineer (SRE)", "Test Automation Engineer",
+        "Application Developer", "Firmware Developer", "Blockchain Developer",
+        "Low-Code/No-Code Developer"
+    ],
+    cybersecurity: [
+        "Cybersecurity Analyst", "Cybersecurity Engineer", "Information Security Analyst",
+        "Ethical Hacker / Penetration Tester", "Security Architect", "Security Engineer",
+        "Security Consultant", "SOC Analyst (Security Operations Center)", "Malware Analyst",
+        "Incident Response Analyst", "Cryptographer", "Digital Forensics Analyst",
+        "Application Security Engineer", "Cloud Security Engineer"
+    ],
+    dataScience: [
+        "Data Scientist", "Data Analyst", "Data Engineer", "Big Data Engineer",
+        "Machine Learning Engineer", "AI Engineer", "Business Intelligence Analyst",
+        "BI Developer", "Deep Learning Engineer", "NLP Engineer (Natural Language Processing)",
+        "Computer Vision Engineer", "Statistician", "Data Architect", "Quantitative Analyst"
+    ],
+    cloudComputing: [
+        "Cloud Engineer", "Cloud Architect", "AWS Solutions Architect",
+        "Azure Cloud Engineer", "Google Cloud Engineer", "DevOps Engineer",
+        "Kubernetes Administrator", "Cloud Security Engineer",
+        "Site Reliability Engineer (SRE)", "Cloud Consultant", "Multi-Cloud Engineer"
+    ],
+    networking: [
+        "Network Engineer", "Network Administrator", "System Administrator",
+        "IT Support Specialist", "Help Desk Technician", "IT Technician",
+        "IT Consultant", "VoIP Engineer", "Systems Engineer", "Infrastructure Engineer",
+        "Database Administrator (DBA)", "Storage Administrator", "Linux Administrator",
+        "Windows Administrator", "Technical Support Engineer", "Wireless Network Engineer"
+    ],
+    aiMl: [
+        "AI Engineer", "Machine Learning Engineer", "Deep Learning Engineer",
+        "NLP Engineer", "Computer Vision Engineer", "Reinforcement Learning Engineer",
+        "AI Research Scientist", "AI Consultant"
+    ],
+    uiUx: [
+        "UI/UX Designer", "UX Researcher", "Product Designer",
+        "Human-Computer Interaction (HCI) Specialist", "Interaction Designer",
+        "Visual Designer"
+    ],
+    softwareTesting: [
+        "QA Engineer", "Manual Tester", "Automation Tester",
+        "Performance Tester", "Penetration Tester", "Test Engineer",
+        "Software Quality Assurance (SQA) Engineer"
+    ],
+    itManagement: [
+        "IT Manager", "IT Director", "Chief Information Officer (CIO)",
+        "Chief Technology Officer (CTO)", "Technical Lead", "Product Manager",
+        "Program Manager", "IT Project Manager", "Engineering Manager",
+        "Scrum Master", "Agile Coach"
+    ],
+    enterpriseApps: [
+        "ERP Consultant", "SAP Consultant", "Salesforce Developer",
+        "Microsoft Dynamics Consultant"
+    ],
+    database: [
+        "Database Administrator (DBA)", "Data Architect", "Database Developer",
+        "NoSQL Developer", "SQL Developer", "ETL Developer"
+    ],
+    emergingTech: [
+        "Blockchain Developer", "Blockchain Architect", "IoT Engineer",
+        "Quantum Computing Engineer", "Robotics Engineer"
+    ],
+    miscellaneous: [
+        "IT Auditor", "IT Trainer", "Digital Transformation Consultant",
+        "IT Compliance Manager", "IT Risk Analyst", "IT Procurement Specialist",
+        "IT Governance Specialist", "IT Legal Consultant"
+    ]
+};
+        // Function to add more input fields
+        function addField(fieldId) {
+            const container = document.getElementById(fieldId);
+            const newField = document.createElement('input');
+            newField.type = 'text';
+            newField.name = fieldId + '[]';
+            newField.placeholder = `Add another ${fieldId.replace('_', ' ')}`;
+            newField.style.marginTop = "10px";
+            newField.required = true;
+            container.appendChild(newField);
+        }
+
+        // Function to validate input content
+        function validateInputContent(inputs, fieldId, errorMessage) {
+            const validPatterns = {
+                'education': /^[a-zA-Z0-9\s,.()-]+$/,
+                'skills': /^[a-zA-Z0-9\s,#.()-]+$/,
+                'certifications': /^[a-zA-Z0-9\s-]+$/,
+                'projects': /^[a-zA-Z0-9\s,.()-]+$/,
+                'interests': /^[a-zA-Z0-9\s-]+$/
+            };
+            
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                const value = input.value.trim();
+                if (value && validPatterns[fieldId] && !validPatterns[fieldId].test(value)) {
+                    showError(input.id || fieldId, errorMessage);
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+
+        // Helper function to validate multiple input fields
+        function validateMultiField(inputs, fieldId, errorMessage) {
+            let hasValue = false;
+            inputs.forEach(input => {
+                if (input.value.trim()) hasValue = true;
+            });
+            if (!hasValue) {
+                showError(fieldId, errorMessage);
+                return false;
+            }
+            return true;
+        }
+
+        // Helper function to show error messages
+        function showError(fieldId, message) {
+            // Remove existing error for this field
+            const existingError = document.querySelector(`#${fieldId} + .error`);
+            if (existingError) existingError.remove();
+            
+            const field = document.getElementById(fieldId);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            field.parentNode.insertBefore(errorDiv, field.nextSibling);
+        }
+
+        // Function to validate all form fields
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(el => el.remove());
+
+            // Validate name
+            const name = document.getElementById('name').value.trim();
+            if (!name) {
+                showError('name', 'Please enter your name');
+                isValid = false;
+            } else if (!/^[a-zA-Z\s-]+$/.test(name)) {
+                showError('name', 'Please enter a valid name (letters and spaces only)');
+                isValid = false;
+            }
+
+            // Validate gender
+            const gender = document.getElementById('gender').value;
+            if (!gender) {
+                showError('gender', 'Please select your gender');
+                isValid = false;
+            }
+
+            // Validate education
+            const educationInputs = document.querySelectorAll('[name="education[]"]');
+            if (!validateMultiField(educationInputs, 'education', 'Please enter at least one qualification')) {
+                isValid = false;
+            }
+            if (!validateInputContent(educationInputs, 'education', 'Enter appropriate data')) {
+                isValid = false;
+            }
+
+            // Validate skills
+            const skillsInputs = document.querySelectorAll('[name="skills[]"]');
+            if (!validateMultiField(skillsInputs, 'skills', 'Please enter at least one skill')) {
+                isValid = false;
+            }
+            if (!validateInputContent(skillsInputs, 'skills', 'Enter appropriate data')) {
+                isValid = false;
+            }
+
+            // Validate experience
+            const experience = document.getElementById('experience').value;
+            if (!experience || isNaN(experience)) {
+                showError('experience', 'Please enter valid years of experience');
+                isValid = false;
+            } else if (parseInt(experience) < 0 || parseInt(experience) > 50) {
+                showError('experience', 'Please enter experience between 0 and 50 years');
+                isValid = false;
+            }
+
+            // Validate work type
+            const workType = document.getElementById('work_type').value;
+            if (!workType) {
+                showError('work_type', 'Please select work type');
+                isValid = false;
+            }
+
+            // Validate certifications
+            const certInputs = document.querySelectorAll('[name="certifications[]"]');
+            if (!validateMultiField(certInputs, 'certifications', 'Please enter at least one certification')) {
+                isValid = false;
+            }
+            if (!validateInputContent(certInputs, 'certifications', 'Enter appropriate data')) {
+                isValid = false;
+            }
+
+            // Validate projects
+            const projectInputs = document.querySelectorAll('[name="projects[]"]');
+            if (!validateMultiField(projectInputs, 'projects', 'Please describe at least one project')) {
+                isValid = false;
+            }
+            if (!validateInputContent(projectInputs, 'projects', 'Enter appropriate data')) {
+                isValid = false;
+            }
+
+            // Validate interests
+            const interestInputs = document.querySelectorAll('[name="interests[]"]');
+            if (!validateMultiField(interestInputs, 'interests', 'Please specify at least one interest')) {
+                isValid = false;
+            }
+            if (!validateInputContent(interestInputs, 'interests', 'Enter appropriate data')) {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Handle form submission
+        document.getElementById('job-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    if (!validateForm()) {
+        return;
+    }
+
+    const formData = new FormData(this);
+    const recommendationsDiv = document.getElementById('recommendations');
+    recommendationsDiv.innerHTML = '<p>Loading recommendations...</p>';
+
+    // Get user interests from form
+    const interestInputs = document.querySelectorAll('[name="interests[]"]');
+    const userInterests = Array.from(interestInputs)
+        .map(input => input.value.trim())
+        .filter(interest => interest !== '');
+
+    // Generate recommendations
+    setTimeout(() => {
+        const recommendations = generateRecommendations(userInterests);
+        displayRecommendations(recommendations, recommendationsDiv);
+    }, 1000); // Simulate API delay
+});
+
+function generateRecommendations(userInterests) {
+    // Flatten all jobs into one array
+    const allJobs = Object.values(departments).flat();
+    
+    // Find exact matches first
+    const exactMatches = allJobs.filter(job => 
+        userInterests.some(interest => 
+            job.toLowerCase().includes(interest.toLowerCase()) ||
+            interest.toLowerCase().includes(job.toLowerCase())
+        ))
+        .slice(0, 5); // Limit to top 5 exact matches
+    
+    // Find partial matches
+    const partialMatches = allJobs.filter(job => 
+        !exactMatches.includes(job) && 
+        userInterests.some(interest => 
+            job.toLowerCase().includes(interest.toLowerCase()) ||
+            interest.toLowerCase().includes(job.split(' ')[0].toLowerCase())
+        )
+    )
+    .slice(0, 5); // Limit to top 5 partial matches
+
+    // Get remaining jobs (shuffled)
+    const remainingJobs = allJobs
+        .filter(job => !exactMatches.includes(job) && !partialMatches.includes(job))
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 10); // Get 10 random other jobs
+
+    // Combine all recommendations with priority to exact matches
+    return [...exactMatches, ...partialMatches, ...remainingJobs];
+}
+
+function displayRecommendations(recommendations, container) {
+    container.innerHTML = '';
+    
+    if (recommendations.length === 0) {
+        container.innerHTML = '<p>No recommendations found. Please try with different inputs.</p>';
+        return;
+    }
+    
+    recommendations.forEach((job, index) => {
+        const recommendation = document.createElement('div');
+        recommendation.className = index < 3 ? 'recommendation highlighted' : 'recommendation';
+        recommendation.innerHTML = `
+            <h3>${job}</h3>
+            <p>Department: ${getDepartmentForJob(job)}</p>
+        `;
+        container.appendChild(recommendation);
+    });
+}
+
+function getDepartmentForJob(job) {
+    for (const [dept, jobs] of Object.entries(departments)) {
+        if (jobs.includes(job)) {
+            // Format department name nicely
+            return dept
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, str => str.toUpperCase())
+                .replace("Ai Ml", "AI/ML")
+                .replace("Ui Ux", "UI/UX");
+        }
+    }
+    return "IT";
+}
+    </script>
+</body>
+</html>

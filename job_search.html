@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Search</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f9fc;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1 1 250px;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #2980b9;
+      box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1f6393;
+    }
+
+    #results {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .job-card {
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: 0.3s ease;
+    }
+
+    .job-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .job-card h3 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    .job-card p {
+      margin: 6px 0;
+      color: #555;
+      font-size: 15px;
+    }
+
+    .job-card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #2980b9;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .job-card a:hover {
+      text-decoration: underline;
+    }
+
+    .no-results {
+      text-align: center;
+      color: #999;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔍 Job Search Portal</h2>
+
+  <div class="search-box">
+    <input type="text" id="role" placeholder="Enter job role (e.g., Data Scientist)">
+    <input type="text" id="location" placeholder="Enter location (e.g., Mumbai)">
+    <button onclick="searchJobs()">Search</button>
+  </div>
+
+  <div id="results"></div>
+
+  <script>
+    function searchJobs() {
+      const role = document.getElementById("role").value;
+      const location = document.getElementById("location").value;
+
+      const url = `http://127.0.0.1:5051/search_jobs?role=${encodeURIComponent(role)}&location=${encodeURIComponent(location)}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById("results");
+          container.innerHTML = '';
+
+          if (data.results && data.results.length > 0) {
+            data.results.forEach(job => {
+              container.innerHTML += `
+                <div class="job-card">
+                  <h3>${job.title}</h3>
+                  <p><strong>Company:</strong> ${job.company.display_name}</p>
+                  <p><strong>Location:</strong> ${job.location.display_name}</p>
+                  <a href="${job.redirect_url}" target="_blank">Apply Here</a>
+                </div>
+              `;
+            });
+          } else {
+            container.innerHTML = '<p class="no-results">No jobs found for this search.</p>';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching jobs:', error);
+          document.getElementById("results").innerHTML = '<p class="no-results">Something went wrong while fetching jobs.</p>';
+        });
+    }
+  </script>
+
+</body>
+</html>

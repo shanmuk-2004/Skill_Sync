@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Sync - Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p.tagline {
+            text-align: center;
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Button Container */
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+            transform: translateY(-5px);
+        }
+
+        .button i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: #fff;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Welcome to Skill Sync</h1>
+            <p>Your one-stop destination for career growth and skill development.</p>
+        </div>
+
+        <!-- Tagline -->
+        <p class="tagline">Explore the tools and resources to enhance your skills and land your dream job.</p>
+
+        <!-- Button Grid -->
+        <div class="button-container">
+            <a href="http://127.0.0.1:5000" class="button">
+                <i class="fas fa-briefcase"></i>Job Recommendations
+            </a>
+            <a href="required_skills.html" class="button">
+                <i class="fas fa-tasks"></i>Required Skills
+            </a>
+            <a href="Roadmaps.html" class="button">
+                <i class="fas fa-road"></i>Roadmaps
+            </a>
+            <a href="http://127.0.0.1:5051" class="button">
+                <i class="fas fa-search"></i>Job Search Feature
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>2025 Skill Sync. | "Find a job you love, and you'll never work a day in your life."</p>
+        </div>
+        
+    </div>
+</body>
+</html>
