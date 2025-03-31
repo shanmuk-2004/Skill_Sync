@@ -7,11 +7,11 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Load the saved model and preprocessing objects
-mlp = joblib.load('model/mlp_model.pkl')
-label_encoders = joblib.load('model/label_encoders.pkl')
-tfidf = joblib.load('model/tfidf_vectorizer.pkl')
-svd = joblib.load('model/svd.pkl')
-scaler = joblib.load('model/scaler.pkl')
+mlp = joblib.load('mlp_model.pkl')
+label_encoders = joblib.load('label_encoders.pkl')
+tfidf = joblib.load('tfidf_vectorizer.pkl')
+svd = joblib.load('svd.pkl')
+scaler = joblib.load('scaler.pkl')
 
 @app.route('/')
 def home():
