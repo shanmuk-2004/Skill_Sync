@@ -15,7 +15,7 @@ scaler = joblib.load('scaler.pkl')
 
 @app.route('/')
 def home():
-    return render_template('Job_Recommendation.html')
+    return send_file('Job_Recommendation.html')
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
