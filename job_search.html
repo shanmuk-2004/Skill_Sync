@@ -120,37 +120,37 @@
 
   <script>
     function searchJobs() {
-      const role = document.getElementById("role").value;
-      const location = document.getElementById("location").value;
+  const role = document.getElementById("role").value;
+  const location = document.getElementById("location").value;
 
-      const url = `http://127.0.0.1:5051/search_jobs?role=${encodeURIComponent(role)}&location=${encodeURIComponent(location)}`;
+  const backendUrl = "https://job-search-1g5u.onrender.com/search_jobs"; // Update with your actual Render URL
 
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const container = document.getElementById("results");
-          container.innerHTML = '';
+  fetch(`${backendUrl}?role=${encodeURIComponent(role)}&location=${encodeURIComponent(location)}`)
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById("results");
+      container.innerHTML = '';
 
-          if (data.results && data.results.length > 0) {
-            data.results.forEach(job => {
-              container.innerHTML += `
-                <div class="job-card">
-                  <h3>${job.title}</h3>
-                  <p><strong>Company:</strong> ${job.company.display_name}</p>
-                  <p><strong>Location:</strong> ${job.location.display_name}</p>
-                  <a href="${job.redirect_url}" target="_blank">Apply Here</a>
-                </div>
-              `;
-            });
-          } else {
-            container.innerHTML = '<p class="no-results">No jobs found for this search.</p>';
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching jobs:', error);
-          document.getElementById("results").innerHTML = '<p class="no-results">Something went wrong while fetching jobs.</p>';
+      if (data.results && data.results.length > 0) {
+        data.results.forEach(job => {
+          container.innerHTML += `
+            <div class="job-card">
+              <h3>${job.title}</h3>
+              <p><strong>Company:</strong> ${job.company.display_name}</p>
+              <p><strong>Location:</strong> ${job.location.display_name}</p>
+              <a href="${job.redirect_url}" target="_blank">Apply Here</a>
+            </div>
+          `;
         });
-    }
+      } else {
+        container.innerHTML = '<p class="no-results">No jobs found for this search.</p>';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching jobs:', error);
+      document.getElementById("results").innerHTML = '<p class="no-results">Something went wrong while fetching jobs.</p>';
+    });
+}
   </script>
 
 </body>
