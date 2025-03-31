@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
 import joblib
 import numpy as np
