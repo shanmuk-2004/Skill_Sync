@@ -33,7 +33,13 @@ def search_jobs():
     }
 
     response = requests.get(url, params=params)
-    return jsonify(response.json())
 
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5051, debug=True)
+    # Debugging: Print the response to see if it's valid
+    print(f"API Response Status: {response.status_code}")
+    print(f"API Response Body: {response.text}")
+
+    if response.status_code == 200:
+        return jsonify(response.json())
+    else:
+        return jsonify({'error': 'Failed to fetch jobs', 'status': response.status_code, 'message': response.text}), response.status_code
+
