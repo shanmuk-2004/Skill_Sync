@@ -10,7 +10,7 @@ APP_KEY = "3934da55d5634309d3d364a3fc69724c"
 
 @app.route('/')
 def home():
-    return render_template('job_search.html')  # ← Updated here
+    return send_file('job_search.html')  # ← Updated here
 
 @app.route('/job_search')
 def job_search_page():
